@@ -1,0 +1,57 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = 'Taqiyya Ghazi — Full-Stack, Cloud & Generative AI Engineer',
+  description = 'Portfolio of Ghazi Taqiyya Al Anshari (Taqiyya Ghazi) — Software Engineer specializing in scalable backend systems (NestJS, PostgreSQL, Redis), React/Next.js Design Systems, and Generative AI pipelines.',
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="id" data-theme="dark" data-lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://taqiyyaghazi.com" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <script is:inline>
+      (function () {
+        try {
+          var savedTheme = localStorage.getItem('tg-theme') || 'dark';
+          var savedLang = localStorage.getItem('tg-lang') || 'id';
+          document.documentElement.setAttribute('data-theme', savedTheme);
+          document.documentElement.setAttribute('data-lang', savedLang);
+          document.documentElement.setAttribute('lang', savedLang);
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body class="min-h-screen ocean-grid-bg antialiased selection:bg-teal-500/30 selection:text-teal-200">
+    <a
+      href="#main-content"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:rounded-lg focus:bg-[var(--accent-primary)] focus:text-slate-950 focus:font-semibold"
+    >
+      Skip to content
+    </a>
+    <slot />
+  </body>
+</html>

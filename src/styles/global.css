@@ -1,0 +1,103 @@
+@import "tailwindcss";
+
+@layer base {
+  :root,
+  [data-theme="dark"] {
+    --bg-primary: #070b12;
+    --bg-secondary: #0d1421;
+    --bg-card: rgba(15, 23, 38, 0.78);
+    --bg-card-hover: rgba(20, 31, 51, 0.92);
+    --bg-elevated: #152033;
+    --text-primary: #f1f5f9;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
+    --border-subtle: rgba(148, 163, 184, 0.14);
+    --border-accent: rgba(45, 212, 191, 0.38);
+    --accent-primary: #2dd4bf;
+    --accent-secondary: #38bdf8;
+    --accent-surface: rgba(20, 184, 166, 0.12);
+    --accent-text: #5eead4;
+    --badge-bg: rgba(15, 23, 42, 0.85);
+    --glow-color: rgba(20, 184, 166, 0.14);
+    color-scheme: dark;
+  }
+
+  [data-theme="light"] {
+    --bg-primary: #f8fafc;
+    --bg-secondary: #f1f5f9;
+    --bg-card: rgba(255, 255, 255, 0.92);
+    --bg-card-hover: #ffffff;
+    --bg-elevated: #e2e8f0;
+    --text-primary: #0f172a;
+    --text-secondary: #334155;
+    --text-muted: #475569;
+    --border-subtle: rgba(15, 23, 42, 0.12);
+    --border-accent: rgba(13, 148, 136, 0.45);
+    --accent-primary: #0d9488;
+    --accent-secondary: #0284c7;
+    --accent-surface: rgba(13, 148, 136, 0.1);
+    --accent-text: #0f766e;
+    --badge-bg: #f1f5f9;
+    --glow-color: rgba(13, 148, 136, 0.08);
+    color-scheme: light;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+/* Bilingual instant toggle without layout flash */
+html[data-lang="id"] .lang-en {
+  display: none !important;
+}
+
+html[data-lang="en"] .lang-id {
+  display: none !important;
+}
+
+/* Reusable semantic classes */
+.surface-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  backdrop-filter: blur(12px);
+  transition: border-color 200ms ease, background-color 200ms ease, transform 200ms ease, box-shadow 200ms ease;
+}
+
+.surface-card:hover {
+  background-color: var(--bg-card-hover);
+  border-color: var(--border-accent);
+}
+
+.font-display {
+  font-family: 'Space Grotesk', 'Inter', system-ui, sans-serif;
+}
+
+.font-mono-code {
+  font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+}
+
+.ocean-grid-bg {
+  background-image:
+    radial-gradient(circle at 18% 12%, var(--glow-color), transparent 38%),
+    radial-gradient(circle at 84% 22%, rgba(56, 189, 248, 0.09), transparent 35%),
+    linear-gradient(to right, var(--border-subtle) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--border-subtle) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 100%, 48px 48px, 48px 48px;
+}

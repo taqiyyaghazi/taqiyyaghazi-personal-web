@@ -1,0 +1,862 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ProjectDiagram from '../components/ProjectDiagram.astro';
+import { profileData } from '../data/profile';
+---
+
+<Layout>
+  <!-- Sticky Top Navigation -->
+  <header class="sticky top-0 z-40 border-b border-[var(--border-subtle)] bg-[var(--bg-primary)]/85 backdrop-blur-md">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-3">
+      <a
+        href="#"
+        class="flex items-center gap-2.5 group focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-primary)] rounded-lg p-1"
+      >
+        <span class="w-9 h-9 rounded-lg bg-[var(--accent-surface)] border border-[var(--border-accent)] flex items-center justify-center font-mono-code font-bold text-sm text-[var(--accent-primary)] group-hover:scale-105 transition-transform">
+          TG
+        </span>
+        <div class="leading-tight">
+          <span class="font-display font-bold text-sm sm:text-base tracking-tight block text-[var(--text-primary)]">
+            {profileData.shortName}
+          </span>
+          <span class="font-mono-code text-[11px] text-[var(--text-secondary)] hidden sm:block">
+            Software &amp; AI Engineer
+          </span>
+        </div>
+      </a>
+
+      <!-- Anchor Navigation -->
+      <nav aria-label="Main Navigation" class="hidden md:flex items-center gap-1 text-sm font-medium text-[var(--text-secondary)]">
+        <a href="#impact" class="px-3 py-2 rounded-lg hover:text-[var(--text-primary)] hover:bg-[var(--accent-surface)] transition-colors">
+          <span class="lang-id">Dampak &amp; Keahlian</span>
+          <span class="lang-en">Impact &amp; Stack</span>
+        </a>
+        <a href="#experience" class="px-3 py-2 rounded-lg hover:text-[var(--text-primary)] hover:bg-[var(--accent-surface)] transition-colors">
+          <span class="lang-id">Pengalaman</span>
+          <span class="lang-en">Experience</span>
+        </a>
+        <a href="#projects" class="px-3 py-2 rounded-lg hover:text-[var(--text-primary)] hover:bg-[var(--accent-surface)] transition-colors">
+          <span class="lang-id">Proyek</span>
+          <span class="lang-en">Projects</span>
+        </a>
+        <a href="#credentials" class="px-3 py-2 rounded-lg hover:text-[var(--text-primary)] hover:bg-[var(--accent-surface)] transition-colors">
+          <span class="lang-id">Kredensial</span>
+          <span class="lang-en">Credentials</span>
+        </a>
+        <a href="#contact" class="px-3 py-2 rounded-lg hover:text-[var(--text-primary)] hover:bg-[var(--accent-surface)] transition-colors">
+          <span class="lang-id">Kontak</span>
+          <span class="lang-en">Contact</span>
+        </a>
+      </nav>
+
+      <!-- Controls: Bilingual Switch + Dark/Light Toggle -->
+      <div class="flex items-center gap-2">
+        <button
+          id="lang-toggle"
+          type="button"
+          aria-label="Switch Language Bahasa Indonesia / English"
+          class="cursor-pointer min-h-[42px] px-3 py-1.5 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] hover:border-[var(--border-accent)] text-xs font-mono-code font-semibold text-[var(--text-primary)] flex items-center gap-1.5 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-primary)]"
+        >
+          <svg class="w-4 h-4 text-[var(--accent-primary)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <circle cx="12" cy="12" r="10"></circle>
+            <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+          </svg>
+          <span class="lang-id">ID · EN</span>
+          <span class="lang-en">EN · ID</span>
+        </button>
+
+        <button
+          id="theme-toggle"
+          type="button"
+          aria-label="Toggle Dark or Light Mode"
+          class="cursor-pointer min-w-[42px] min-h-[42px] p-2 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] hover:border-[var(--border-accent)] text-[var(--text-primary)] flex items-center justify-center transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-primary)]"
+        >
+          <!-- Sun icon (shown in dark mode) -->
+          <svg id="icon-sun" class="w-4 h-4 text-[var(--accent-primary)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <circle cx="12" cy="12" r="4"></circle>
+            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path>
+          </svg>
+          <!-- Moon icon (shown in light mode) -->
+          <svg id="icon-moon" class="w-4 h-4 text-[var(--accent-primary)] hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 space-y-20 sm:space-y-28">
+    <!-- HERO + BENTO IMPACT SECTION -->
+    <section id="impact" class="space-y-6">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-5">
+        <!-- Main Editorial Hero Card (8 cols) -->
+        <div class="lg:col-span-8 surface-card rounded-2xl p-6 sm:p-9 flex flex-col justify-between relative overflow-hidden">
+          <div class="space-y-5">
+            <div class="flex flex-wrap items-center gap-2.5">
+              <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono-code font-medium bg-[var(--accent-surface)] text-[var(--accent-text)] border border-[var(--border-accent)]">
+                <span class="w-2 h-2 rounded-full bg-[var(--accent-primary)] animate-pulse" aria-hidden="true"></span>
+                <span class="lang-id">{profileData.hero.statusBadge.id}</span>
+                <span class="lang-en">{profileData.hero.statusBadge.en}</span>
+              </span>
+              <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono-code text-[var(--text-secondary)] border border-[var(--border-subtle)] bg-[var(--bg-secondary)]">
+                <svg class="w-3.5 h-3.5 text-[var(--accent-primary)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                  <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+                <span class="lang-id">{profileData.location.id}</span>
+                <span class="lang-en">{profileData.location.en}</span>
+              </span>
+            </div>
+
+            <div class="space-y-3">
+              <p class="font-mono-code text-xs sm:text-sm uppercase tracking-widest text-[var(--accent-primary)] font-semibold">
+                {profileData.fullName}
+              </p>
+              <h1 class="font-display text-3xl sm:text-4xl lg:text-[42px] font-bold tracking-tight leading-[1.15] text-[var(--text-primary)]">
+                <span class="lang-id">{profileData.hero.titlePrefix.id} </span>
+                <span class="lang-en">{profileData.hero.titlePrefix.en} </span>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 via-cyan-400 to-sky-400">
+                  <span class="lang-id">{profileData.hero.titleHighlight.id}</span>
+                  <span class="lang-en">{profileData.hero.titleHighlight.en}</span>
+                </span>
+              </h1>
+            </div>
+
+            <p class="text-[var(--text-secondary)] text-base sm:text-lg leading-relaxed max-w-2xl">
+              <span class="lang-id">{profileData.hero.summary.id}</span>
+              <span class="lang-en">{profileData.hero.summary.en}</span>
+            </p>
+          </div>
+
+          <!-- Primary CTA & Social Bar -->
+          <div class="pt-7 mt-7 border-t border-[var(--border-subtle)] flex flex-wrap items-center gap-3">
+            <button
+              type="button"
+              data-copy-email={profileData.email}
+              class="copy-email-btn cursor-pointer min-h-[44px] px-4 py-2.5 rounded-xl bg-[var(--accent-primary)] text-slate-950 font-semibold text-sm inline-flex items-center gap-2 hover:opacity-90 transition-opacity focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[var(--accent-primary)]"
+            >
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+              </svg>
+              <span class="copy-label-default">
+                <span class="lang-id">Salin Email</span>
+                <span class="lang-en">Copy Email</span>
+              </span>
+              <span class="copy-label-success hidden font-mono-code">
+                <span class="lang-id">Tersalin!</span>
+                <span class="lang-en">Copied!</span>
+              </span>
+            </button>
+
+            <a
+              href={`mailto:${profileData.email}`}
+              class="min-h-[44px] px-4 py-2.5 rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-secondary)] hover:border-[var(--border-accent)] text-[var(--text-primary)] font-medium text-sm inline-flex items-center gap-2 transition-colors"
+            >
+              <svg class="w-4 h-4 text-[var(--accent-primary)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                <polyline points="22,6 12,13 2,6"></polyline>
+              </svg>
+              <span class="font-mono-code text-xs sm:text-sm">{profileData.email}</span>
+            </a>
+
+            <div class="flex items-center gap-2 ml-auto">
+              <a
+                href={profileData.links.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="GitHub Profile"
+                class="min-w-[44px] min-h-[44px] px-3 rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-secondary)] hover:border-[var(--border-accent)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] inline-flex items-center justify-center gap-1.5 text-xs font-mono-code transition-colors"
+              >
+                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"></path>
+                </svg>
+                <span>GitHub</span>
+              </a>
+              <a
+                href={profileData.links.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn Profile"
+                class="min-w-[44px] min-h-[44px] px-3 rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-secondary)] hover:border-[var(--border-accent)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] inline-flex items-center justify-center gap-1.5 text-xs font-mono-code transition-colors"
+              >
+                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"></path>
+                </svg>
+                <span>LinkedIn</span>
+              </a>
+              <a
+                href={profileData.links.medium}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Medium Blog"
+                class="min-w-[44px] min-h-[44px] px-3 rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-secondary)] hover:border-[var(--border-accent)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] inline-flex items-center justify-center gap-1.5 text-xs font-mono-code transition-colors"
+              >
+                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M13.54 12a6.8 6.8 0 01-6.77 6.82A6.8 6.8 0 010 12a6.8 6.8 0 016.77-6.82A6.8 6.8 0 0113.54 12zM20.96 12c0 3.54-1.51 6.42-3.38 6.42-1.87 0-3.39-2.88-3.39-6.42s1.52-6.42 3.39-6.42 3.38 2.88 3.38 6.42M24 12c0 3.17-.53 5.75-1.19 5.75-.66 0-1.19-2.58-1.19-5.75s.53-5.75 1.19-5.75C23.47 6.25 24 8.83 24 12z"></path>
+                </svg>
+                <span>Medium</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Ocean Flow Architecture Telemetry Card (4 cols) -->
+        <div class="lg:col-span-4 surface-card rounded-2xl p-6 flex flex-col justify-between relative overflow-hidden">
+          <div class="flex items-center justify-between border-b border-[var(--border-subtle)] pb-3.5">
+            <div class="flex items-center gap-2">
+              <span class="w-2.5 h-2.5 rounded-full bg-teal-400"></span>
+              <span class="w-2.5 h-2.5 rounded-full bg-sky-400"></span>
+              <span class="w-2.5 h-2.5 rounded-full bg-indigo-400"></span>
+            </div>
+            <span class="font-mono-code text-[11px] text-[var(--text-secondary)]">system-architecture.svg</span>
+          </div>
+
+          <div class="my-4 space-y-3">
+            <svg viewBox="0 0 340 160" class="w-full h-auto rounded-xl bg-[var(--bg-secondary)] border border-[var(--border-subtle)] p-2.5" fill="none" aria-hidden="true">
+              <!-- Frontend Box -->
+              <rect x="14" y="12" width="148" height="54" rx="10" fill="var(--bg-card)" stroke="var(--accent-primary)" stroke-width="1.5" />
+              <text x="88" y="33" text-anchor="middle" fill="var(--accent-primary)" class="font-mono-code text-[10px] font-bold">FRONTEND &amp; UI</text>
+              <text x="88" y="49" text-anchor="middle" fill="var(--text-primary)" class="font-mono-code text-[8.5px]">React 19 · Next.js</text>
+
+              <!-- Backend Box -->
+              <rect x="178" y="12" width="148" height="54" rx="10" fill="var(--bg-card)" stroke="var(--accent-secondary)" stroke-width="1.5" />
+              <text x="252" y="33" text-anchor="middle" fill="var(--accent-secondary)" class="font-mono-code text-[10px] font-bold">MODULAR MONOLITH</text>
+              <text x="252" y="49" text-anchor="middle" fill="var(--text-primary)" class="font-mono-code text-[8.5px]">NestJS · DDD · Redis</text>
+
+              <!-- Bus / Connectors -->
+              <path d="M88 66V84H252V66" stroke="var(--accent-primary)" stroke-width="1.5" stroke-dasharray="3 3" />
+              <path d="M170 84V96" stroke="var(--accent-primary)" stroke-width="1.5" />
+
+              <!-- AI & Data Platform Box -->
+              <rect x="14" y="96" width="312" height="52" rx="10" fill="var(--accent-surface)" stroke="var(--accent-primary)" stroke-width="1.5" />
+              <text x="170" y="117" text-anchor="middle" fill="var(--accent-primary)" class="font-mono-code text-[10px] font-bold">GEN-AI &amp; DATA PLATFORM</text>
+              <text x="170" y="133" text-anchor="middle" fill="var(--text-primary)" class="font-mono-code text-[8.5px]">LLaMA 3.1 · RAG · Stable Diffusion</text>
+            </svg>
+
+            <div class="space-y-2 pt-1 font-mono-code text-xs">
+              <div class="flex items-center justify-between py-1.5 px-3 rounded-lg bg-[var(--bg-secondary)] border border-[var(--border-subtle)]">
+                <span class="text-[var(--text-secondary)]">Core Domain</span>
+                <span class="text-[var(--text-primary)] font-semibold">Full-Stack &amp; Cloud</span>
+              </div>
+              <div class="flex items-center justify-between py-1.5 px-3 rounded-lg bg-[var(--bg-secondary)] border border-[var(--border-subtle)]">
+                <span class="text-[var(--text-secondary)]">AI Specialization</span>
+                <span class="text-[var(--accent-primary)] font-semibold">LLM · RAG · Diffusion</span>
+              </div>
+              <div class="flex items-center justify-between py-1.5 px-3 rounded-lg bg-[var(--bg-secondary)] border border-[var(--border-subtle)]">
+                <span class="text-[var(--text-secondary)]">Academic Base</span>
+                <span class="text-[var(--text-primary)] font-semibold">B.Sc. Mathematics (UNS)</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="text-[11px] font-mono-code text-[var(--text-secondary)] flex items-center justify-between pt-2 border-t border-[var(--border-subtle)]">
+            <span>UPTIME SLA: 99.9%</span>
+            <span class="text-[var(--accent-primary)]">DICODING ★ 4.9/5.0</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4 High-Impact Metric Bento Cards -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        {profileData.metrics.map((metric) => (
+          <div class="surface-card rounded-2xl p-5 flex flex-col justify-between">
+            <div>
+              <div class="font-display text-3xl sm:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-sky-400">
+                {metric.value}
+              </div>
+              <h2 class="mt-2 font-display font-semibold text-base text-[var(--text-primary)]">
+                <span class="lang-id">{metric.label.id}</span>
+                <span class="lang-en">{metric.label.en}</span>
+              </h2>
+            </div>
+            <p class="mt-3 text-xs leading-relaxed text-[var(--text-secondary)]">
+              <span class="lang-id">{metric.detail.id}</span>
+              <span class="lang-en">{metric.detail.en}</span>
+            </p>
+          </div>
+        ))}
+      </div>
+
+      <!-- 4-Pillar Tech Stack Bento Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
+        {profileData.skillGroups.map((group) => (
+          <div class="surface-card rounded-2xl p-5 sm:p-6">
+            <h3 class="font-display font-semibold text-sm uppercase tracking-wider text-[var(--accent-primary)] mb-3.5 flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-[var(--accent-primary)]" aria-hidden="true"></span>
+              <span class="lang-id">{group.category.id}</span>
+              <span class="lang-en">{group.category.en}</span>
+            </h3>
+            <div class="flex flex-wrap gap-2">
+              {group.items.map((skill) => (
+                <span class="px-2.5 py-1 rounded-lg text-xs font-mono-code bg-[var(--bg-secondary)] text-[var(--text-primary)] border border-[var(--border-subtle)]">
+                  {skill}
+                </span>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- WORK EXPERIENCE SECTION (DUAL TRACK TABS) -->
+    <section id="experience" class="space-y-8 scroll-mt-24">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+        <div>
+          <p class="font-mono-code text-xs uppercase tracking-widest text-[var(--accent-primary)] font-semibold">
+            <span class="lang-id">Rekam Jejak Profesional</span>
+            <span class="lang-en">Professional Track Record</span>
+          </p>
+          <h2 class="font-display text-2xl sm:text-3xl font-bold text-[var(--text-primary)] mt-1">
+            <span class="lang-id">Pengalaman Engineering &amp; Mentorship</span>
+            <span class="lang-en">Engineering &amp; Technical Mentorship</span>
+          </h2>
+        </div>
+
+        <!-- Accessible Dual-Track Tab Switcher -->
+        <div
+          role="tablist"
+          aria-label="Experience Tracks"
+          class="inline-flex p-1 rounded-xl bg-[var(--bg-secondary)] border border-[var(--border-subtle)] self-start"
+        >
+          <button
+            type="button"
+            role="tab"
+            id="tab-btn-core"
+            aria-selected="true"
+            aria-controls="panel-core"
+            data-exp-tab="core"
+            class="exp-tab-btn cursor-pointer min-h-[40px] px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold transition-all bg-[var(--accent-primary)] text-slate-950"
+          >
+            <span class="lang-id">Core Engineering (4)</span>
+            <span class="lang-en">Core Engineering (4)</span>
+          </button>
+          <button
+            type="button"
+            role="tab"
+            id="tab-btn-mentor"
+            aria-selected="false"
+            aria-controls="panel-mentor"
+            data-exp-tab="mentor"
+            class="exp-tab-btn cursor-pointer min-h-[40px] px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold transition-all text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
+          >
+            <span class="lang-id">Code Review &amp; Mentorship (3)</span>
+            <span class="lang-en">Code Review &amp; Mentorship (3)</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Track 1: Core Engineering -->
+      <div id="panel-core" role="tabpanel" aria-labelledby="tab-btn-core" class="space-y-4">
+        {profileData.coreExperience.map((item) => (
+          <article class="surface-card rounded-2xl p-6 sm:p-7">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-4 border-b border-[var(--border-subtle)]">
+              <div>
+                <div class="flex flex-wrap items-center gap-2.5">
+                  <h3 class="font-display text-lg sm:text-xl font-bold text-[var(--text-primary)]">
+                    <span class="lang-id">{item.role.id}</span>
+                    <span class="lang-en">{item.role.en}</span>
+                  </h3>
+                  <span class="text-[var(--accent-primary)] font-mono-code font-semibold text-sm">
+                    @ {item.company}
+                  </span>
+                </div>
+                <p class="font-mono-code text-xs text-[var(--text-secondary)] mt-1">
+                  <span class="lang-id">{item.period.id}</span>
+                  <span class="lang-en">{item.period.en}</span>
+                </p>
+              </div>
+
+              {item.highlightBadge && (
+                <span class="self-start sm:self-center px-3 py-1 rounded-full text-xs font-mono-code font-medium bg-[var(--accent-surface)] text-[var(--accent-text)] border border-[var(--border-accent)]">
+                  <span class="lang-id">{item.highlightBadge.id}</span>
+                  <span class="lang-en">{item.highlightBadge.en}</span>
+                </span>
+              )}
+            </div>
+
+            <ul class="mt-4 space-y-2.5 text-sm sm:text-base text-[var(--text-secondary)]">
+              {item.bullets.map((bullet) => (
+                <li class="flex items-start gap-2.5">
+                  <span class="mt-2 w-1.5 h-1.5 rounded-full bg-[var(--accent-primary)] shrink-0" aria-hidden="true"></span>
+                  <span class="leading-relaxed">
+                    <span class="lang-id">{bullet.id}</span>
+                    <span class="lang-en">{bullet.en}</span>
+                  </span>
+                </li>
+              ))}
+            </ul>
+
+            <div class="mt-5 flex flex-wrap gap-2">
+              {item.tags.map((tag) => (
+                <span class="px-2.5 py-1 rounded-md text-xs font-mono-code bg-[var(--bg-secondary)] text-[var(--text-secondary)] border border-[var(--border-subtle)]">
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </article>
+        ))}
+      </div>
+
+      <!-- Track 2: Technical Mentorship & Code Review -->
+      <div id="panel-mentor" role="tabpanel" aria-labelledby="tab-btn-mentor" class="space-y-4 hidden">
+        {profileData.mentorshipExperience.map((item) => (
+          <article class="surface-card rounded-2xl p-6 sm:p-7">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-4 border-b border-[var(--border-subtle)]">
+              <div>
+                <div class="flex flex-wrap items-center gap-2.5">
+                  <h3 class="font-display text-lg sm:text-xl font-bold text-[var(--text-primary)]">
+                    <span class="lang-id">{item.role.id}</span>
+                    <span class="lang-en">{item.role.en}</span>
+                  </h3>
+                  <span class="text-[var(--accent-primary)] font-mono-code font-semibold text-sm">
+                    @ {item.company}
+                  </span>
+                </div>
+                <p class="font-mono-code text-xs text-[var(--text-secondary)] mt-1">
+                  <span class="lang-id">{item.period.id}</span>
+                  <span class="lang-en">{item.period.en}</span>
+                </p>
+              </div>
+
+              {item.highlightBadge && (
+                <span class="self-start sm:self-center px-3 py-1 rounded-full text-xs font-mono-code font-medium bg-[var(--accent-surface)] text-[var(--accent-text)] border border-[var(--border-accent)]">
+                  <span class="lang-id">{item.highlightBadge.id}</span>
+                  <span class="lang-en">{item.highlightBadge.en}</span>
+                </span>
+              )}
+            </div>
+
+            <ul class="mt-4 space-y-2.5 text-sm sm:text-base text-[var(--text-secondary)]">
+              {item.bullets.map((bullet) => (
+                <li class="flex items-start gap-2.5">
+                  <span class="mt-2 w-1.5 h-1.5 rounded-full bg-[var(--accent-primary)] shrink-0" aria-hidden="true"></span>
+                  <span class="leading-relaxed">
+                    <span class="lang-id">{bullet.id}</span>
+                    <span class="lang-en">{bullet.en}</span>
+                  </span>
+                </li>
+              ))}
+            </ul>
+
+            <div class="mt-5 flex flex-wrap gap-2">
+              {item.tags.map((tag) => (
+                <span class="px-2.5 py-1 rounded-md text-xs font-mono-code bg-[var(--bg-secondary)] text-[var(--text-secondary)] border border-[var(--border-subtle)]">
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <!-- FEATURED PROJECTS BENTO GRID -->
+    <section id="projects" class="space-y-8 scroll-mt-24">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+        <div>
+          <p class="font-mono-code text-xs uppercase tracking-widest text-[var(--accent-primary)] font-semibold">
+            <span class="lang-id">Arsitektur &amp; Produk Unggulan</span>
+            <span class="lang-en">Featured Engineering Works</span>
+          </p>
+          <h2 class="font-display text-2xl sm:text-3xl font-bold text-[var(--text-primary)] mt-1">
+            <span class="lang-id">Proyek Pilihan &amp; Sistem Produksi</span>
+            <span class="lang-en">Selected Projects &amp; Systems</span>
+          </h2>
+        </div>
+        <a
+          href={profileData.links.github}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 text-sm font-mono-code text-[var(--accent-primary)] hover:underline"
+        >
+          <span class="lang-id">Lihat Repositori di GitHub</span>
+          <span class="lang-en">Explore Repositories on GitHub</span>
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M7 17L17 7M17 7H7M17 7V17"></path>
+          </svg>
+        </a>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        {profileData.projects.map((project) => (
+          <article class="surface-card rounded-2xl p-5 flex flex-col justify-between">
+            <div class="space-y-4">
+              <ProjectDiagram type={project.diagramType} />
+
+              <div class="flex items-center justify-between gap-2">
+                <span class="px-2.5 py-1 rounded-full text-[11px] font-mono-code font-medium bg-[var(--accent-surface)] text-[var(--accent-text)] border border-[var(--border-accent)]">
+                  <span class="lang-id">{project.impactBadge.id}</span>
+                  <span class="lang-en">{project.impactBadge.en}</span>
+                </span>
+                <span class="font-mono-code text-[11px] text-[var(--text-secondary)]">
+                  <span class="lang-id">{project.period.id}</span>
+                  <span class="lang-en">{project.period.en}</span>
+                </span>
+              </div>
+
+              <div>
+                <h3 class="font-display text-lg font-bold text-[var(--text-primary)]">
+                  {project.title}
+                </h3>
+                <p class="text-xs font-medium text-[var(--accent-primary)] mt-0.5">
+                  <span class="lang-id">{project.subtitle.id}</span>
+                  <span class="lang-en">{project.subtitle.en}</span>
+                </p>
+              </div>
+
+              <p class="text-sm text-[var(--text-secondary)] leading-relaxed">
+                <span class="lang-id">{project.description.id}</span>
+                <span class="lang-en">{project.description.en}</span>
+              </p>
+
+              <div class="p-3 rounded-xl bg-[var(--bg-secondary)] border border-[var(--border-subtle)] text-xs text-[var(--text-secondary)] leading-relaxed">
+                <strong class="font-mono-code text-[var(--text-primary)] block mb-1">
+                  <span class="lang-id">Arsitektur &amp; Teknis:</span>
+                  <span class="lang-en">Architecture &amp; Stack:</span>
+                </strong>
+                <span class="lang-id">{project.architectureNote.id}</span>
+                <span class="lang-en">{project.architectureNote.en}</span>
+              </div>
+            </div>
+
+            <div class="pt-4 mt-4 border-t border-[var(--border-subtle)] flex flex-wrap gap-1.5">
+              {project.tags.map((tag) => (
+                <span class="px-2 py-0.5 rounded text-[11px] font-mono-code bg-[var(--bg-secondary)] text-[var(--text-secondary)] border border-[var(--border-subtle)]">
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <!-- EDUCATION, AWARDS & ADVANCED CERTIFICATIONS BENTO -->
+    <section id="credentials" class="space-y-8 scroll-mt-24">
+      <div>
+        <p class="font-mono-code text-xs uppercase tracking-widest text-[var(--accent-primary)] font-semibold">
+          <span class="lang-id">Fondasi Akademik &amp; Pengakuan</span>
+          <span class="lang-en">Academic Foundation &amp; Recognition</span>
+        </p>
+        <h2 class="font-display text-2xl sm:text-3xl font-bold text-[var(--text-primary)] mt-1">
+          <span class="lang-id">Pendidikan, Penghargaan &amp; Sertifikasi Utama</span>
+          <span class="lang-en">Education, Honors &amp; Core Certifications</span>
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-5">
+        <!-- Education & Thesis Card (6 cols) -->
+        <div class="lg:col-span-6 surface-card rounded-2xl p-6 sm:p-7 flex flex-col justify-between space-y-6">
+          <div class="space-y-4">
+            <div class="flex items-start justify-between gap-3">
+              <div>
+                <span class="font-mono-code text-xs text-[var(--accent-primary)] font-semibold">
+                  {profileData.education.period} · GPA {profileData.education.gpa}
+                </span>
+                <h3 class="font-display text-xl font-bold text-[var(--text-primary)] mt-1">
+                  {profileData.education.university}
+                </h3>
+                <p class="text-sm font-medium text-[var(--text-secondary)]">
+                  <span class="lang-id">{profileData.education.degree.id}</span>
+                  <span class="lang-en">{profileData.education.degree.en}</span>
+                </p>
+              </div>
+              <span class="px-3 py-1 rounded-full text-xs font-mono-code font-semibold bg-[var(--accent-surface)] text-[var(--accent-text)] border border-[var(--border-accent)]">
+                S.Mat / B.Sc.
+              </span>
+            </div>
+
+            <!-- AI / NLP Thesis Box -->
+            <div class="p-4 rounded-xl bg-[var(--bg-secondary)] border border-[var(--border-subtle)] space-y-1.5">
+              <span class="font-mono-code text-[11px] uppercase tracking-wider text-[var(--accent-primary)] font-semibold block">
+                <span class="lang-id">Skripsi Deep Learning &amp; NLP</span>
+                <span class="lang-en">Deep Learning &amp; NLP Thesis</span>
+              </span>
+              <p class="text-sm font-medium text-[var(--text-primary)] italic leading-relaxed">
+                "{profileData.education.thesisTitle}"
+              </p>
+            </div>
+
+            <!-- Executive Campus Leadership -->
+            <div class="space-y-2.5 pt-1">
+              <h4 class="font-mono-code text-xs uppercase tracking-wider text-[var(--text-secondary)] font-semibold">
+                <span class="lang-id">Kepemimpinan Eksekutif Kampus</span>
+                <span class="lang-en">Executive Organization Leadership</span>
+              </h4>
+              {profileData.education.leadership.map((lead) => (
+                <div class="p-3.5 rounded-xl bg-[var(--bg-secondary)]/60 border border-[var(--border-subtle)]">
+                  <p class="text-sm font-semibold text-[var(--text-primary)]">
+                    <span class="lang-id">{lead.role.id}</span>
+                    <span class="lang-en">{lead.role.en}</span>
+                  </p>
+                  <p class="text-xs text-[var(--text-secondary)] mt-1 leading-relaxed">
+                    <span class="lang-id">{lead.detail.id}</span>
+                    <span class="lang-en">{lead.detail.en}</span>
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div class="flex flex-wrap gap-1.5 pt-2 border-t border-[var(--border-subtle)]">
+            {profileData.education.focusAreas.map((focus) => (
+              <span class="px-2.5 py-1 rounded-md text-xs font-mono-code bg-[var(--bg-secondary)] text-[var(--text-secondary)] border border-[var(--border-subtle)]">
+                {focus}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        <!-- Honors & Curated Certifications Column (6 cols) -->
+        <div class="lg:col-span-6 space-y-5 flex flex-col justify-between">
+          <!-- 3 Honors & Awards -->
+          <div class="surface-card rounded-2xl p-6 sm:p-7 space-y-4">
+            <h3 class="font-display text-lg font-bold text-[var(--text-primary)] flex items-center gap-2">
+              <svg class="w-5 h-5 text-[var(--accent-primary)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <circle cx="12" cy="8" r="6"></circle>
+                <path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"></path>
+              </svg>
+              <span class="lang-id">Penghargaan &amp; Prestasi</span>
+              <span class="lang-en">Honors &amp; Awards</span>
+            </h3>
+
+            <div class="space-y-3">
+              {profileData.awards.map((award) => (
+                <div class="p-3.5 rounded-xl bg-[var(--bg-secondary)] border border-[var(--border-subtle)]">
+                  <div class="flex flex-wrap items-center justify-between gap-2">
+                    <h4 class="font-display font-semibold text-sm text-[var(--text-primary)]">
+                      {award.title}
+                    </h4>
+                    <span class="font-mono-code text-[11px] text-[var(--accent-primary)]">
+                      {award.issuer} · <span class="lang-id">{award.date.id}</span><span class="lang-en">{award.date.en}</span>
+                    </span>
+                  </div>
+                  <p class="text-xs text-[var(--text-secondary)] mt-1.5 leading-relaxed">
+                    <span class="lang-id">{award.description.id}</span>
+                    <span class="lang-en">{award.description.en}</span>
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <!-- 4 Advanced Engineering Certifications -->
+          <div class="surface-card rounded-2xl p-6 sm:p-7 space-y-4">
+            <h3 class="font-display text-lg font-bold text-[var(--text-primary)] flex items-center gap-2">
+              <svg class="w-5 h-5 text-[var(--accent-primary)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                <path d="m9 12 2 2 4-4"></path>
+              </svg>
+              <span class="lang-id">Sertifikasi Spesialis Tingkat Lanjut</span>
+              <span class="lang-en">Advanced Engineering Certifications</span>
+            </h3>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              {profileData.certifications.map((cert) => (
+                <div class="p-3.5 rounded-xl bg-[var(--bg-secondary)] border border-[var(--border-subtle)] flex flex-col justify-between">
+                  <span class="font-mono-code text-[10px] uppercase tracking-wider text-[var(--accent-primary)] font-semibold">
+                    {cert.badge}
+                  </span>
+                  <p class="font-display font-semibold text-sm text-[var(--text-primary)] mt-1">
+                    <span class="lang-id">{cert.title.id}</span>
+                    <span class="lang-en">{cert.title.en}</span>
+                  </p>
+                  <span class="text-xs text-[var(--text-secondary)] mt-2 block">
+                    {cert.issuer}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT / CONVERSION SECTION -->
+    <section id="contact" class="scroll-mt-24">
+      <div class="surface-card rounded-3xl p-7 sm:p-10 lg:p-12 relative overflow-hidden">
+        <div class="max-w-3xl space-y-5">
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono-code font-semibold bg-[var(--accent-surface)] text-[var(--accent-text)] border border-[var(--border-accent)]">
+            <span class="w-2 h-2 rounded-full bg-[var(--accent-primary)]" aria-hidden="true"></span>
+            <span class="lang-id">Siap Berdiskusi</span>
+            <span class="lang-en">Ready to Collaborate</span>
+          </span>
+
+          <h2 class="font-display text-2xl sm:text-4xl font-bold text-[var(--text-primary)] tracking-tight">
+            <span class="lang-id">Mari bangun sistem yang cepat, skalabel, dan berdampak nyata.</span>
+            <span class="lang-en">Let’s architect fast, scalable, and high-impact systems together.</span>
+          </h2>
+
+          <p class="text-[var(--text-secondary)] text-base sm:text-lg leading-relaxed">
+            <span class="lang-id">
+              Baik untuk peran Full-Stack / Backend / AI Engineer, konsultasi arsitektur cloud &amp; modular monolith, maupun kolaborasi teknis—silakan hubungi saya langsung melalui email atau LinkedIn.
+            </span>
+            <span class="lang-en">
+              Whether you are hiring for a Full-Stack, Backend, or AI Engineer role, scaling cloud infrastructure, or looking for technical mentorship—reach out directly via email or LinkedIn.
+            </span>
+          </p>
+
+          <div class="pt-3 flex flex-wrap items-center gap-3">
+            <button
+              type="button"
+              data-copy-email={profileData.email}
+              class="copy-email-btn cursor-pointer min-h-[46px] px-5 py-3 rounded-xl bg-[var(--accent-primary)] text-slate-950 font-semibold text-sm inline-flex items-center gap-2 hover:opacity-90 transition-opacity focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[var(--accent-primary)]"
+            >
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+              </svg>
+              <span class="copy-label-default">
+                <span class="lang-id">Salin Email ({profileData.email})</span>
+                <span class="lang-en">Copy Email ({profileData.email})</span>
+              </span>
+              <span class="copy-label-success hidden font-mono-code">
+                <span class="lang-id">Alamat Email Tersalin!</span>
+                <span class="lang-en">Email Address Copied!</span>
+              </span>
+            </button>
+
+            <a
+              href={`mailto:${profileData.email}`}
+              class="min-h-[46px] px-5 py-3 rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-secondary)] hover:border-[var(--border-accent)] text-[var(--text-primary)] font-semibold text-sm inline-flex items-center gap-2 transition-colors"
+            >
+              <span class="lang-id">Kirim Email Langsung</span>
+              <span class="lang-en">Send Direct Email</span>
+              <svg class="w-4 h-4 text-[var(--accent-primary)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path d="M5 12h14M12 5l7 7-7 7"></path>
+              </svg>
+            </a>
+
+            <a
+              href={profileData.links.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="min-h-[46px] px-5 py-3 rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-secondary)] hover:border-[var(--border-accent)] text-[var(--text-primary)] font-semibold text-sm inline-flex items-center gap-2 transition-colors"
+            >
+              <span>LinkedIn (840+)</span>
+              <svg class="w-4 h-4 text-[var(--accent-primary)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path d="M7 17L17 7M17 7H7M17 7V17"></path>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-[var(--border-subtle)] py-8 mt-12">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono-code text-[var(--text-secondary)]">
+      <p>
+        © {new Date().getFullYear()} {profileData.fullName}.
+        <span class="lang-id">Dibangun dengan Astro &amp; Tailwind CSS v4.</span>
+        <span class="lang-en">Built with Astro &amp; Tailwind CSS v4.</span>
+      </p>
+      <div class="flex items-center gap-4">
+        <a href={profileData.links.github} target="_blank" rel="noopener noreferrer" class="hover:text-[var(--accent-primary)] transition-colors">
+          GitHub
+        </a>
+        <a href={profileData.links.linkedin} target="_blank" rel="noopener noreferrer" class="hover:text-[var(--accent-primary)] transition-colors">
+          LinkedIn
+        </a>
+        <a href={profileData.links.medium} target="_blank" rel="noopener noreferrer" class="hover:text-[var(--accent-primary)] transition-colors">
+          Medium
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Client-side Interactive Controls (Theme, Language, Experience Tabs, Copy Email) -->
+  <script is:inline>
+    (function () {
+      const root = document.documentElement;
+      const themeBtn = document.getElementById('theme-toggle');
+      const iconSun = document.getElementById('icon-sun');
+      const iconMoon = document.getElementById('icon-moon');
+      const langBtn = document.getElementById('lang-toggle');
+
+      function syncThemeIcons() {
+        const currentTheme = root.getAttribute('data-theme') || 'dark';
+        if (currentTheme === 'light') {
+          iconSun?.classList.add('hidden');
+          iconMoon?.classList.remove('hidden');
+        } else {
+          iconSun?.classList.remove('hidden');
+          iconMoon?.classList.add('hidden');
+        }
+      }
+
+      syncThemeIcons();
+
+      themeBtn?.addEventListener('click', () => {
+        const nextTheme = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+        root.setAttribute('data-theme', nextTheme);
+        try {
+          localStorage.setItem('tg-theme', nextTheme);
+        } catch (e) {}
+        syncThemeIcons();
+      });
+
+      langBtn?.addEventListener('click', () => {
+        const nextLang = root.getAttribute('data-lang') === 'en' ? 'id' : 'en';
+        root.setAttribute('data-lang', nextLang);
+        root.setAttribute('lang', nextLang);
+        try {
+          localStorage.setItem('tg-lang', nextLang);
+        } catch (e) {}
+      });
+
+      // Experience Dual-Track Tabs
+      const tabButtons = document.querySelectorAll('.exp-tab-btn');
+      const panelCore = document.getElementById('panel-core');
+      const panelMentor = document.getElementById('panel-mentor');
+
+      tabButtons.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const target = btn.getAttribute('data-exp-tab');
+          tabButtons.forEach((b) => {
+            const active = b.getAttribute('data-exp-tab') === target;
+            b.setAttribute('aria-selected', active ? 'true' : 'false');
+            if (active) {
+              b.classList.add('bg-[var(--accent-primary)]', 'text-slate-950');
+              b.classList.remove('text-[var(--text-secondary)]');
+            } else {
+              b.classList.remove('bg-[var(--accent-primary)]', 'text-slate-950');
+              b.classList.add('text-[var(--text-secondary)]');
+            }
+          });
+
+          if (target === 'mentor') {
+            panelCore?.classList.add('hidden');
+            panelMentor?.classList.remove('hidden');
+          } else {
+            panelMentor?.classList.add('hidden');
+            panelCore?.classList.remove('hidden');
+          }
+        });
+      });
+
+      // Copy Email Buttons
+      const copyButtons = document.querySelectorAll('.copy-email-btn');
+      copyButtons.forEach((btn) => {
+        btn.addEventListener('click', async () => {
+          const email = btn.getAttribute('data-copy-email') || 'taqiyyaghazi@gmail.com';
+          const defaultLabel = btn.querySelector('.copy-label-default');
+          const successLabel = btn.querySelector('.copy-label-success');
+          try {
+            await navigator.clipboard.writeText(email);
+            defaultLabel?.classList.add('hidden');
+            successLabel?.classList.remove('hidden');
+            setTimeout(() => {
+              successLabel?.classList.add('hidden');
+              defaultLabel?.classList.remove('hidden');
+            }, 2200);
+          } catch (e) {
+            window.location.href = 'mailto:' + email;
+          }
+        });
+      });
+    })();
+  </script>
+</Layout>
